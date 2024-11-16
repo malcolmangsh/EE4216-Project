@@ -33,8 +33,8 @@
 #define R0 10.0 
 
 // // Define your bot token and chat ID (Tried to use for telegram)
-// #define TELEGRAM_BOT_TOKEN "8059348037:AAEoLB_hPj7F7hxB9p5v5fikGLu70uC6pjA"
-// #define TELEGRAM_CHAT_ID "1675067152"
+// #define TELEGRAM_BOT_TOKEN "bot_token number"
+// #define TELEGRAM_CHAT_ID "chatbot_id"
 
 //To provide the ESP32 with the connection and the sensor type
 DHT dht_sensor(DHT_SENSOR_PIN, DHT_SENSOR_TYPE);
