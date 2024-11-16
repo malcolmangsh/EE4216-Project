@@ -18,3 +18,5 @@ communicate with an online server.
 visualization through a web or mobile interface. 
 6. Real-Time Alerts: Send alerts for security breaches or hazardous conditions (e.g., smoke, gas 
 leaks). 
+
+Refer to master for source codes
