@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>ESP Readings</title>
+	<style type="text/css">
+		body{
+			background-color: #2E2E2E;
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+		}
+		.data-container{
+			display: flex;
+			justify-content: space-between;
+			width: 50%;
+			margin: 50px auto;
+			padding: 20px;
+			background-color: #535353;
+			box-shadow: 0 2px 20px rgba(0, 0, 0,0.1);
+			border-radius: 10px;
+		}
+
+		.data-item{
+			text-align: center;
+		}
+
+		.data-item h2{
+			font-size: 24px;
+			font-weight: bold;
+			margin-bottom: 10px;
+		}
+
+		.data-item p{
+			font-size: 48px;
+			font-weight: bold;
+			color: #ffc400;
+		}
+
+		.data-head{
+			margin: auto;
+			width: 50%;
+			text-align: center;
+			font-size: 45px;
+			font-weight: bold;
+			margin: 50px auto;
+			padding: 20px;
+			background-color: #535353;
+			box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+			border-radius: 20px;
+
+
+		}
+
+
+
+	</style>
+</head>
+<body>
+
+	<div class="data-head">ESP Realtime Readings</div>
+
+	<div class="data-container">
+		<div class="data-item">
+			<h2>Temperature</h2>
+			<p class="value" id="temperature">22 &#8451;</p>
+		</div>
+		<div class="data-item">
+			<h2>Humidity</h2>
+			<p class="value" id="humidity">10%</p>
+		</div>
+		<div class="data-item">
+			<h2>Gas</h2>
+			<p class="value" id="gas">10%</p>
+		</div>
+
+		
+	</div>
+
+	<!-- the scripts for products you want to access must be added-->
+
+	<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+
+	<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+
+
+	<script type="module">
+	  // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyD1J49WHDSi1bdKJIAQjSBH1b6Bw7r-gaQ",
+      authDomain: "ee4216-39ad7.firebaseapp.com",
+      databaseURL: "https://ee4216-39ad7-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "ee4216-39ad7",
+      storageBucket: "ee4216-39ad7.appspot.com",
+      messagingSenderId: "490370636859",
+      appId: "1:490370636859:web:73a5cc387cfffac42ed01e",
+      measurementId: "G-950J8J3H7D"
+    };
+
+    // Initialize Firebase
+    //const app = initializeApp(firebaseConfig);
+    //const analytics = getAnalytics(app);
+	firebase.initializeApp(firebaseConfig);
+
+	  // getting reference to the database
+	  var database = firebase.database();
+
+	  //getting reference to the data we want
+	  var dataRef1 = database.ref('ESP/Temperature');
+	  var dataRef2 = database.ref('ESP/Humidity');
+	  var dataRef3 = database.ref('ESP/Gas');
+
+	  //fetch the data
+	  dataRef1.on('value', function(getdata1){
+	  	var temp = getdata1.val();
+	  	document.getElementById('temperature').innerHTML = temp + "&#8451;";
+	  })
+
+	  dataRef2.on('value', function(getdata2){
+	  	var humi = getdata2.val();
+	  	document.getElementById('humidity').innerHTML = humi + "%";
+	  })
+
+	  dataRef3.on('value', function(getdata3){
+	  	var gas = getdata3.val();
+	  	document.getElementById('gas').innerHTML = gas + "ppm";
+	  })
+
+
+
+
+	</script>
+
+</body>
+</html>
